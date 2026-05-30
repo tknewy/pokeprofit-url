@@ -909,8 +909,9 @@ async function fetchLiveEV() {
   source.textContent = 'Fetching live prices...';
 
   try {
-    const res  = await fetch(API_URL + '/api/ev?set=' + encodeURIComponent(activeSetKey), {
+    const res  = await fetch(API_URL + '/api/ev?set=' + encodeURIComponent(activeSetKey) + '&_=' + Date.now(), {
       signal: AbortSignal.timeout(30000),
+      cache: 'no-store',
     });
     const data = await res.json();
 
